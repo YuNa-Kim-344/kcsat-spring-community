@@ -14,14 +14,13 @@ import java.util.concurrent.TimeUnit;
 @RequiredArgsConstructor
 public class UserService {
 
+    private static final String BLACKLIST_PREFIX = "blacklist:";
+    private static final Long EXPIRED_MS = 1000 * 60 * 60L;
+
     private final MemberRepository memberRepository;
     private final PasswordEncoder passwordEncoder;
     private final JWTUtil jwtUtil;
-
     private final RedisTemplate<String, String> redisTemplate;
-    private static final String BLACKLIST_PREFIX = "blacklist:";
-
-    private final Long expiredMs = 1000 * 60 * 60L;
 
     public String login(MemberSignInForm form) {
         Member member = memberRepository.findByEmail(form.getUserEmail()).orElseThrow(() -> new IllegalArgumentException("존재하지 않는 사용자입니다."));

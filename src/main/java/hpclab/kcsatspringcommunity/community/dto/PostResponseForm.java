@@ -50,4 +50,23 @@ public class PostResponseForm {
             this.question = new QuestionDetailsDto(question);
         }
     }
+
+    public PostResponseForm(Post post) {
+        this.pId = post.getPId();
+        this.title = post.getPostTitle();
+        this.content = post.getPostContent();
+        this.postDate = post.getCreatedDate();
+        this.email = post.getMember().getEmail();
+        this.username = post.getMember().getUsername();
+
+        Question question = post.getQuestion();
+
+        if (question == null) {
+            this.questionType = "";
+        }
+        else {
+            this.questionType = question.getType().getKrName();
+            this.question = new QuestionDetailsDto(question);
+        }
+    }
 }

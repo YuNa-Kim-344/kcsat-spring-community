@@ -45,7 +45,6 @@ public class BoardController {
     private final CommentService commentService;
     private final QuestionJPARepository questionJPARepository;
     private final BookService bookService;
-
     private final JWTUtil jwtUtil;
 
 

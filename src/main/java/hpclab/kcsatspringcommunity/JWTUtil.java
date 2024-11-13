@@ -14,9 +14,10 @@ import java.util.UUID;
 @Component
 public class JWTUtil {
 
+    private static final Long expiredMs = 3600000L;
+
     @Value("${jwt.secret}")
     private String secretKey;
-    private final Long expiredMs = 3600000L;
 
     public String generateToken(String userEmail, String userName, Role role) {
         return Jwts.builder()

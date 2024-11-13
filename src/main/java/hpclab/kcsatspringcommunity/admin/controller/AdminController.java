@@ -6,6 +6,7 @@ import hpclab.kcsatspringcommunity.admin.dto.UserRequestResponseForm;
 import hpclab.kcsatspringcommunity.admin.service.UserRequestService;
 import hpclab.kcsatspringcommunity.community.domain.Member;
 import hpclab.kcsatspringcommunity.community.dto.CommentResponseForm;
+import hpclab.kcsatspringcommunity.community.dto.MemberDetailsResponseForm;
 import hpclab.kcsatspringcommunity.community.dto.MemberResponseForm;
 import hpclab.kcsatspringcommunity.community.dto.PostResponseForm;
 import hpclab.kcsatspringcommunity.community.repository.MemberRepository;
@@ -42,10 +43,9 @@ public class AdminController {
     }
 
     @GetMapping("/api/community/admin/members/{mId}")
-    public ResponseEntity<MemberResponseForm> getMemberDetail(@PathVariable Long mId) {
-        return ResponseEntity.ok(MemberResponseForm.builder()
-                .member(memberRepository.findById(mId).orElseThrow(() -> new UsernameNotFoundException("getMemberDetail: 없는 유저입니다.")))
-                .build());
+    public ResponseEntity<MemberDetailsResponseForm> getMemberDetail(@PathVariable Long mId) {
+        Member member = memberRepository.findById(mId).orElseThrow(() -> new UsernameNotFoundException("getMemberDetail: 없는 유저입니다."));
+        return ResponseEntity.ok(new MemberDetailsResponseForm(member));
     }
 
     @GetMapping("/api/community/admin/members/{mId}/posts")

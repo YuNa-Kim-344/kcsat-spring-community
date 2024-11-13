@@ -1,5 +1,5 @@
 jwt:
-  secret: ergaerjglkdsfboaerbgoaerbigasdklanfdlasdfnlakwentlawentlsdfglnkaskdlaweh
+  secret: type_your_secret_code
 
 spring:
   kafka:

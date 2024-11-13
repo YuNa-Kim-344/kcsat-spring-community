@@ -43,9 +43,9 @@ public class SecurityConfig {
                 .authorizeHttpRequests(authorize -> authorize
                         // 페이지 권한 설정
                         .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
-                        .requestMatchers("/api/community/admin/**").hasRole("ADMIN")
                         .requestMatchers("/api/community/open/**").permitAll()
                         .requestMatchers("/api/community/**").hasRole("USER")
+                        .requestMatchers("/api/community/admin/**").hasRole("ADMIN")
                         .anyRequest().permitAll()
                 )
                 .sessionManagement(

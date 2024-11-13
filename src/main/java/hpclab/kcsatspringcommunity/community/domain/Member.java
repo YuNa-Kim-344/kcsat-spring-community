@@ -40,11 +40,11 @@ public class Member extends BaseTimeEntity {
     @Column(name = "MEMBER_PW", nullable = false)
     private String password;
 
-    @OneToMany(mappedBy = "member")
+    @OneToMany(mappedBy = "member", fetch = FetchType.LAZY)
     @JsonIgnoreProperties({"member"})
     private List<Post> posts;
 
-    @OneToMany(mappedBy = "member")
+    @OneToMany(mappedBy = "member", fetch = FetchType.LAZY)
     @JsonIgnoreProperties({"member"})
     private List<Comment> comments;
 

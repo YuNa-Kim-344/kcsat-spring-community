@@ -56,7 +56,7 @@ public class QuestionRankServiceImpl implements QuestionRankService {
     }
 
 
-    @Scheduled(cron = "0 */10 * * * *", zone = "Asia/Seoul") // 월요일 자정마다 실행
+    @Scheduled(cron = "0 0 0 ? * MON", zone = "Asia/Seoul") // 월요일 자정마다 실행
     public void updateQuestionRank() {
         log.info("cron update question rank");
 

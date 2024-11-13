@@ -190,7 +190,7 @@ public class PostServiceImpl implements PostService {
 
         String nowVote = redisTemplate.opsForValue().get(upVote);
 
-        if (Integer.parseInt(nowVote) >= 1) {
+        if (Integer.parseInt(nowVote) >= 20) {
             Post post = postRepository.findById(postId).orElseThrow(() -> new IllegalArgumentException("핫게 등록 실패."));
 
             post.gettingHot();
@@ -230,7 +230,7 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    @Scheduled(cron = "0 */10 * * * *", zone = "Asia/Seoul") // 매일 자정에 실행
+    @Scheduled(cron = "0 0 0 * * *", zone = "Asia/Seoul") // 매일 자정에 실행
     public void resetPostView() {
         log.info("cron reset post userViewChk");
 
