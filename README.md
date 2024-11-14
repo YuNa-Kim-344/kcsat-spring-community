@@ -5,7 +5,7 @@
 2. PostgreSQL (메인 데이터 저장 용도)
     - QueryDSL (게시판 페이지 검색 쿼리문 작성)
     - JPA (나머지 송수신용)
-3. Redis (조회수, 추천수 등 데이터 정합, 캐싱용)
+3. Redis (조회수, 추천수, 캐싱용)
 4. Spring Security
 5. JWT
 
