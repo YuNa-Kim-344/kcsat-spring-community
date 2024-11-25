@@ -238,9 +238,18 @@ public class PostServiceImpl implements PostService {
 
         Cursor<byte[]> keys = redisTemplate.getConnectionFactory().getConnection().scan(scanOptions);
 
+        // 1000개씩 읽어서, 100번 읽으면 반영. 그 전에 이미 다 읽으면 그 값을 전부 반영.
+        List<String> batchKeys = new ArrayList<>();
         while(keys.hasNext()) {
-            String key = new String(keys.next());
-            redisTemplate.delete(key);
+            batchKeys.add(new String(keys.next()));
+            if (batchKeys.size() >= 100) {
+                redisTemplate.delete(batchKeys);
+                batchKeys.clear();
+            }
+        }
+
+        if (!batchKeys.isEmpty()) {
+            redisTemplate.delete(batchKeys);
         }
     }
 }
