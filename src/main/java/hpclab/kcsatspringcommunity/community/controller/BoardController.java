@@ -57,7 +57,6 @@ public class BoardController {
                                                                     @RequestParam(required = false) QuestionType type  // 타입 필터 (선택적 파라미터)
                                                                     ) {
 
-
         // 정렬 기준 처리
         String[] sortParams = sort.split(",");
         Sort.Direction direction = Sort.Direction.fromString(sortParams[1]);  // ASC or DESC
